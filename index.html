@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+
+<body>
+
+    <div class="w-full h-[100vh] bg-[rgb(247,247,247)] flex items-center justify-center">
+        <div class="sm:w-[40%] w-full flex flex-col items-center justify-center bg-[#fff] p-5 rounded shadow-xl">
+            <h1 class="font-bold text-4xl mb-3">Age Calculator</h1>
+            <p class="font-bold mb-3 text-lg">Enter your date of birth:</p>
+            <input type="date"
+                class="border mb-3 px-3 py-1 border-gray-300 rounded hover:border-blue-500 focus:ring-2 outline-none w-[50%]"
+                name="date" id="date">
+            <input type="button"
+                class="mb-3 bg-green-500 px-3 py-2 rounded active:bg-green-700 hover:bg-green-600 text-white"
+                value="Calculate Age" onclick="calculate()">
+            <h2 class="text-2xl font-bold">Your age is <span class="age" id="age">0</span> years</h2>
+        </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        let date = document.querySelector('#date');
+        function calculate() {
+            let userAge = date.value;
+            let age = document.querySelector('#age');
+            let currentDate = new Date().getDate();
+            let currentYear = new Date().getFullYear();
+            let currentMonth = new Date().getMonth() + 1;
+            let userDate = parseInt(userAge.split("-")[2]);
+            let userMonth = parseInt(userAge.split("-")[1]);
+            let userYear = parseInt(userAge.split("-")[0]);
+
+            // console.log(userAgeNow);
+            let userAgeNow = currentYear - userYear;
+            
+            if (userDate>=currentDate && userMonth>= currentMonth) {  
+                userAgeNow = userAgeNow - 1;
+                // console.log(userAgeNow);
+            }
+            age.innerText = userAgeNow;
+        }
+
+    </script>
+</body>
+
+</html>
